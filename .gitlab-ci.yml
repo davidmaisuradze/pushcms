@@ -1,0 +1,17 @@
+stages:
+  - deploy
+
+deploy_dev:
+  stage: deploy
+  when: manual
+  only:
+    - develop
+  script:
+    - DEV_HOME="/var/www/admin.crazypush.com";
+    - if [ ! -d $DEV_HOME ]; then exit 1; fi
+    - PATH=${PATH}:/usr/local/bin
+    - npm install
+    - npm run build
+    - whoami
+    - pwd
+    - rsync -arp  --exclude-from='.rsync_excludes' . ${DEV_HOME}

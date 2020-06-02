@@ -1,0 +1,39 @@
+<mat-form-field>
+  <input matInput
+         [matDatepicker]="fromDate"
+         placeholder="From Date"
+         (dateInput)="onFilterDateChange($event.value, calendarTypes.fromDate)"
+  />
+  <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+  <mat-datepicker #fromDate></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field class="ml-2">
+  <input matInput
+         [matDatepicker]="toDate"
+         placeholder="To Date"
+         (dateInput)="onFilterDateChange($event.value, calendarTypes.toDate)"
+  />
+  <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+  <mat-datepicker #toDate></mat-datepicker>
+</mat-form-field>
+
+<div class="websites-content">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Sent</th>
+      <th>Failed</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="(notificationStatistics$ | async) as notificationStatistics">
+    <tr *ngFor="let statistic of notificationStatistics"
+    >
+      <td>{{statistic._id}}</td>
+      <td>{{statistic.successCount}}</td>
+      <td>{{statistic.failedCount}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

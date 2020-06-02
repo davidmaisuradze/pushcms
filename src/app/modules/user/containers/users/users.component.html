@@ -1,0 +1,25 @@
+<div class="websites-content">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Websites Count</th>
+      <th>Is Active</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="(users$ | async) as users">
+    <tr *ngFor="let user of users"
+    >
+      <td>{{user.email}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.websitesCount}}</td>
+      <td>{{user.isActive}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
